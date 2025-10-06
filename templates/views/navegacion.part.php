@@ -1,14 +1,5 @@
 <?php
-  function esOpcionMenuActiva ( $opcion ) {
-    $actual = explode('/',$_SERVER['REQUEST_URI']);
-    $actual = '/'.$actual[count($actual)-1];
-    if ( $actual === $opcion) {
-      return true;
-    }
-    else {
-      return false;
-    }
-  }
+  require_once __DIR__ . '/../../src/utils/utils.class.php';
 ?>
 
 <!-- Navigation Bar -->
@@ -27,24 +18,22 @@
          </div>
          <div class="collapse navbar-collapse navbar-right" id="menu">
             <ul class="nav navbar-nav">
-              <?php if(esOpcionMenuActiva('/index.php') == true || esOpcionMenuActiva('/') == true)
+              <?php if(Utils::esOpcionMenuActiva('/index.php') == true || Utils::esOpcionMenuActiva('/') == true)
               echo '<li class="active lien">';
                 else echo '<li class=" lien">'; ?>
               <a href="index.php"><i class="fa fa-home sr-icons"></i> Home</a></li>
               
-              <?php if(esOpcionMenuActiva('/about.php') == true)
+              <?php if(Utils::esOpcionMenuActiva('/about.php') == true)
               echo '<li class="active lien">';
                 else echo '<li class=" lien">'; ?>
               <a href="about.php"><i class="fa fa-bookmark sr-icons"></i> About</a></li>
               
-              
-              <?php if(esOpcionMenuActiva('/blog.php') == true)
+              <?php if(Utils::esOpcionMenuActiva('/blog.php') == true)
               echo '<li class="active lien">';
                 else echo '<li class=" lien">'; ?>
               <a href="blog.php"><i class="fa fa-file-text sr-icons"></i> Blog</a></li>
               
-              
-              <?php if(esOpcionMenuActiva('/contact.php') == true)
+              <?php if(Utils::esOpcionMenuActiva('/contact.php') == true)
               echo '<li class="active lien">';
                 else echo '<li class=" lien">'; ?>
               <a href="contact.php"><i class="fa fa-phone-square sr-icons"></i> Contact</a></li>
