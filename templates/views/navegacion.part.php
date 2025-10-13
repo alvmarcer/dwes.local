@@ -23,6 +23,11 @@
                 else echo '<li class=" lien">'; ?>
               <a href="index.php"><i class="fa fa-home sr-icons"></i> Home</a></li>
               
+              <?php if(Utils::esOpcionMenuActiva('/galeria.php') == true)
+              echo '<li class="active lien">';
+                else echo '<li class=" lien">'; ?>
+              <a href="galeria.php"><i class="fa fa-bookmark sr-icons"></i> Galeria</a></li>
+              
               <?php if(Utils::esOpcionMenuActiva('/about.php') == true)
               echo '<li class="active lien">';
                 else echo '<li class=" lien">'; ?>
