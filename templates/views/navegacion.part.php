@@ -42,6 +42,11 @@
               echo '<li class="active lien">';
                 else echo '<li class=" lien">'; ?>
               <a href="contact.php"><i class="fa fa-phone-square sr-icons"></i> Contact</a></li>
+              
+              <?php if(Utils::esOpcionMenuActiva('/asociados.php') == true)
+              echo '<li class="active lien">';
+                else echo '<li class=" lien">'; ?>
+              <a href="asociados.php"><i class="fa fa-phone-square sr-icons"></i> Asociados</a></li>
             </ul>
          </div>
      </div>
