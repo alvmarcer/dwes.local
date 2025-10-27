@@ -1,6 +1,6 @@
 <?php
-    require_once "../src/utils/file.class.php";
-    require_once "../src/entity/asociado.class.php";
+    require_once __DIR__ . "/../../src/utils/file.class.php";
+    require_once __DIR__ . "/../../src/entity/asociado.class.php";
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
@@ -20,4 +20,4 @@
         $descripcion = "";
     }
 
-    require_once "./views/asociados.view.php";
+    require_once __DIR__ . "/../views/asociados.view.php";

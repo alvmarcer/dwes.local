@@ -18,35 +18,35 @@
          </div>
          <div class="collapse navbar-collapse navbar-right" id="menu">
             <ul class="nav navbar-nav">
-              <?php if(Utils::esOpcionMenuActiva('/index.php') == true || Utils::esOpcionMenuActiva('/') == true)
+              <?php if(Utils::esOpcionMenuActiva('/') == true)
               echo '<li class="active lien">';
                 else echo '<li class=" lien">'; ?>
-              <a href="index.php"><i class="fa fa-home sr-icons"></i> Home</a></li>
+              <a href="/"><i class="fa fa-home sr-icons"></i> Home</a></li>
               
-              <?php if(Utils::esOpcionMenuActiva('/galeria.php') == true)
+              <?php if(Utils::esOpcionMenuActiva('/galeria') == true)
               echo '<li class="active lien">';
                 else echo '<li class=" lien">'; ?>
-              <a href="galeria.php"><i class="fa fa-bookmark sr-icons"></i> Galeria</a></li>
+              <a href="/galeria"><i class="fa fa-bookmark sr-icons"></i> Galeria</a></li>
               
-              <?php if(Utils::esOpcionMenuActiva('/about.php') == true)
+              <?php if(Utils::esOpcionMenuActiva('/about') == true)
               echo '<li class="active lien">';
                 else echo '<li class=" lien">'; ?>
-              <a href="about.php"><i class="fa fa-bookmark sr-icons"></i> About</a></li>
+              <a href="/about"><i class="fa fa-bookmark sr-icons"></i> About</a></li>
               
-              <?php if(Utils::esOpcionMenuActiva('/blog.php') == true)
+              <?php if(Utils::esOpcionMenuActiva('/blog') == true)
               echo '<li class="active lien">';
                 else echo '<li class=" lien">'; ?>
-              <a href="blog.php"><i class="fa fa-file-text sr-icons"></i> Blog</a></li>
+              <a href="/blog"><i class="fa fa-file-text sr-icons"></i> Blog</a></li>
               
-              <?php if(Utils::esOpcionMenuActiva('/contact.php') == true)
+              <?php if(Utils::esOpcionMenuActiva('/contact') == true)
               echo '<li class="active lien">';
                 else echo '<li class=" lien">'; ?>
-              <a href="contact.php"><i class="fa fa-phone-square sr-icons"></i> Contact</a></li>
+              <a href="/contact"><i class="fa fa-phone-square sr-icons"></i> Contact</a></li>
               
-              <?php if(Utils::esOpcionMenuActiva('/asociados.php') == true)
+              <?php if(Utils::esOpcionMenuActiva('/asociados') == true)
               echo '<li class="active lien">';
                 else echo '<li class=" lien">'; ?>
-              <a href="asociados.php"><i class="fa fa-phone-square sr-icons"></i> Asociados</a></li>
+              <a href="/asociados"><i class="fa fa-phone-square sr-icons"></i> Asociados</a></li>
             </ul>
          </div>
      </div>

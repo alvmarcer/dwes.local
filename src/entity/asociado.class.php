@@ -1,5 +1,5 @@
 <?php
-require_once "./IEntity.class.php";
+require_once "IEntity.class.php";
 
 class Asociado implements IEntity
 {

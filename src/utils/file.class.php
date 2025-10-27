@@ -1,5 +1,5 @@
 <?php
-require "../src/exceptions/FileException.class.php";
+require "src/exceptions/FileException.class.php";
 
 class File
 {
