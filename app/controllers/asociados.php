@@ -1,6 +1,7 @@
 <?php
-    require_once __DIR__ . "/../../src/utils/file.class.php";
-    require_once __DIR__ . "/../../src/entity/asociado.class.php";
+    use dwes\app\entity\Asociado;
+    use dwes\app\utils\File;
+    use dwes\app\exceptions\FileException;
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {

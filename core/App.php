@@ -1,6 +1,8 @@
 <?php
-require_once __DIR__ . '/../src/exceptions/AppException.class.php';
-require_once __DIR__ . '/../src/database/connection.class.php';
+namespace dwes\core;
+
+use dwes\app\database\Connection;
+use dwes\app\exceptions\AppException;
 class App
 {
     /**

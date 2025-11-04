@@ -1,6 +1,7 @@
 <?php
-require_once __DIR__ . '/../../src/entity/imagen.class.php';
-require_once __DIR__ . '/../../src/entity/asociado.class.php';
+
+use dwes\app\entity\Imagen;
+use dwes\app\entity\Asociado;
 
 // Imagenes
 $imagenesHome[]= new Imagen ('1.jpg','descripción imagen 1',1,456,610,130);

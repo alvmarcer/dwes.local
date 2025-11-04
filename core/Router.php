@@ -1,5 +1,8 @@
 <?php
-require_once __DIR__ . '/../src/exceptions/NotFoundException.class.php';
+namespace dwes\core;
+
+use dwes\app\exceptions\NotFoundException;
+
 class Router
 {
     private function __construct()

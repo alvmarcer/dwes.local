@@ -1,3 +1,7 @@
+<?php
+    use dwes\app\utils\Utils;
+?>
+
 <div class="last-box row">
     <div class="col-xs-12 col-sm-4 col-sm-push-4 last-block">
         <div class="partner-box text-center">

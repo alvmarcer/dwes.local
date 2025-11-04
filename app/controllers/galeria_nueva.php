@@ -1,8 +1,11 @@
 <?php
-require_once __DIR__ . "/../../src/utils/file.class.php";
-require_once __DIR__ . "/../../src/entity/Imagen.class.php";
-require_once __DIR__ . "/../../src/database/connection.class.php";
-require_once __DIR__ . "/../../src/repository/ImagenesRepository.php";
+use dwes\app\entity\Imagen;
+use dwes\app\repository\ImagenesRepository;
+use dwes\app\utils\File;
+use dwes\app\exceptions\FileException;
+use dwes\app\exceptions\QueryException;
+use dwes\core\App;
+use dwes\app\exceptions\AppException;
 
 try {
     $imagenesRepository = new ImagenesRepository();

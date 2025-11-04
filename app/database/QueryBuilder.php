@@ -1,6 +1,13 @@
 <?php
-require_once __DIR__ . "/../exceptions/QueryException.class.php";
-require_once __DIR__ . "/../entity/Imagen.class.php";
+
+namespace dwes\app\database;
+
+use dwes\core\App;
+use dwes\app\entity\IEntity;
+use dwes\app\exceptions\QueryException;
+use PDO;
+use PDOException;
+use dwes\app\entity\Imagen;
 
 abstract class QueryBuilder
 {
@@ -10,7 +17,7 @@ abstract class QueryBuilder
     private $connection;
     private $table;
     private $classEntity;
-    public function __construct(string $table, string $classEntity)
+    public function __construct(string $table, string $classEntity = Imagen::class)
     {
         $this->connection = App::getConnection();
         $this->table = $table;

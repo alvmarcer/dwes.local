@@ -1,5 +1,7 @@
 <?php
-require "src/exceptions/FileException.class.php";
+namespace dwes\app\utils;
+
+use dwes\app\exceptions\FileException;
 
 class File
 {
