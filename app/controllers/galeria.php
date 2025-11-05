@@ -1,6 +1,7 @@
 <?php
 use dwes\app\entity\Imagen;
 use dwes\app\database\Connection;
+use dwes\core\App;
 use dwes\app\repository\ImagenesRepository;
 use dwes\app\exceptions\QueryException;
 use dwes\app\exceptions\AppException;
@@ -12,9 +13,9 @@ $mensaje = "";
 
 try {
     // $queryBuilder = new QueryBuilder('imagenes','Imagen');
-    $imagenesRepository = new ImagenesRepository();
+    $imagenesRepository = App::getRepository(ImagenesRepository::class);
     // $imagenes = $queryBuilder->findAll();
-    $imagenes = $imagenesRepository->findAll();
+    $imagenes = $imagenesRepository->findAll(); // $imagenGaleria = App::getRepository(ImagenGaleriaRepository::class)->findAll();
 } catch (QueryException $queryException) {
     $errores[] = $fileException->getMessage();
 } catch (AppException $appException) {
