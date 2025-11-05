@@ -16,7 +16,7 @@ try {
     $imagen = new File('imagen', $tiposAceptados); // El nombre 'imagen' es el que se ha puesto en el formulario de galeria.view.php
     
     $imagen->saveUploadFile(Imagen::RUTA_IMAGENES_SUBIDAS);
-    $imagenGaleria = new Imagen($imagen->getFileName(), $descripcion, $categoria);
+    $imagenGaleria = new Imagen($imagen->getFileName(), $descripcion);
     $imagenesRepository->save($imagenGaleria);
     App::get('logger')->add("Se ha guardado una imagen: ".$imagenGaleria->getNombre());
 
