@@ -14,7 +14,7 @@ class MyLog
     /**
     * @param string $filename
     */
-    private function __construct(string $filename, int $level)
+    private function __construct(string $filename, $level)
     {
         $this->level = $level;
         $this->log = new Monolog\Logger('name');
@@ -25,7 +25,7 @@ class MyLog
     * @param string $filename
     * @return MyLog
     */
-    public static function load(string $filename, int $level = Level::Info): MyLog
+    public static function load(string $filename, $level = Level::Info): MyLog
     {
         return new MyLog($filename, $level);
     }

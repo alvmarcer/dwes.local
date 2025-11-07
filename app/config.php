@@ -13,7 +13,7 @@ return [
     ],
     'logs' => [
         'filename' => 'curso.log',
-        'level' => \Monolog\Logger::INFO
+        'level' => \Monolog\Level::Info
     ],
     'routes' => [
         'filename' => 'routes.php'
