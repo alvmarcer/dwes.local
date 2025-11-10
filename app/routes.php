@@ -1,12 +1,12 @@
 <?php
 
-$router->get ('', 'app/controllers/index.php');
-$router->get ('about', 'app/controllers/about.php');
-$router->get ('asociados', 'app/controllers/asociados.php');
-$router->get ('blog', 'app/controllers/blog.php');
-$router->get ('contact', 'app/controllers/contact.php');
-$router->get ('galeria', 'app/controllers/galeria.php');
-$router->get ('post', 'app/controllers/single_post.php');
+$router->get ('', 'PagesController@index');
+$router->get ('about', 'PagesController@about');
+$router->get ('blog', 'PagesController@blog');
+$router->get ('contact', 'PagesController@contact');
+$router->get ('galeria', 'GaleriaController@index');
+$router->get ('post', 'PagesController@post');
+$router->get ('asociados', 'AsociadosController@index');
 
-$router->post('galeria/nueva', 'app/controllers/galeria_nueva.php');
-$router->post('asociados/nuevo', 'app/controllers/asociado_nuevo.php');
+$router->post('galeria/nueva', 'GaleriaController@nueva');
+$router->post('asociados/nuevo', 'AsociadosController@nuevo');

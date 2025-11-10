@@ -1,9 +1,4 @@
-<?php
-require_once __DIR__ . '/inicio.part.php';
-require_once __DIR__ . '/navegacion.part.php';
-?>
-
-<form clas="form-horizontal" action="<?= $_SERVER['PHP_SELF'] ?>" method="post"
+<form clas="form-horizontal" action="/asociados/nuevo" method="post"
     enctype="multipart/form-data">
     <div class="form-group">
     </div>
@@ -23,6 +18,3 @@ require_once __DIR__ . '/navegacion.part.php';
         </div>
     </div>
 </form>
-
-<?php
-require_once __DIR__ . '/fin.part.php';

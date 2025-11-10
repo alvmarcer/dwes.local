@@ -7,8 +7,9 @@ use dwes\app\exceptions\NotFoundException;
 try {
     require_once 'core/bootstrap.php';
 
-    require App::get('router')->direct(Request::uri(), Request::method());
     // require Router::load('app/routes.php')->direct(Request::uri(), Request::method());
+    // require App::get('router')->direct(Request::uri(), Request::method());
+    App::get('router')->direct(Request::uri(), Request::method());
 
     // $router = new Router();
     // require 'app/routes.php'; // Obtenemos la tabla de rutas
