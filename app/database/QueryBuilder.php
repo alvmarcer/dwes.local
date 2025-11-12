@@ -8,6 +8,7 @@ use dwes\app\exceptions\QueryException;
 use PDO;
 use PDOException;
 use dwes\app\entity\Imagen;
+use dwes\app\exceptions\NotFoundException;
 
 abstract class QueryBuilder
 {
@@ -46,6 +47,40 @@ abstract class QueryBuilder
            valores. */
         return $pdoStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, $this->classEntity);
     }
+
+    /**
+     * @param int $id
+     * @return IEntity
+     * @throws NotFoundException
+     * @throws QueryException
+     */
+    public function find(int $id): IEntity
+    {
+        $sql = "SELECT * FROM $this->table WHERE id=$id";
+        $result = $this->executeQuery($sql);
+        if (empty($result))
+            throw new NotFoundException("No se ha encontrado ningún elemento con id $id.");
+        return $result[0]; // La consulta devolverá un array con 1 solo elemento
+    }
+
+    /**
+     * @param string $sql
+     * @return array
+     * @throws QueryException
+     */
+    private function executeQuery(string $sql): array
+    {
+        $pdoStatement = $this->connection->prepare($sql);
+        if ($pdoStatement->execute() === false)
+            throw new QueryException("No se ha podido ejecutar la query solicitada.");
+        /* PDO::FETCH_CLASS indica que queremos que devuelva los datos en un array de clases. Los nombres
+           de los campos de la BD deben coincidir con los nombres de los atributos de la clase.
+           PDO::FETCH_PROPS_LATE hace que se llame al constructor de la clase antes que se asignen los
+           valores. */
+        return $pdoStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, $this->classEntity);
+    }
+
+
 
     /**
      * @param IEntity $entity

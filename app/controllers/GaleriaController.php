@@ -54,7 +54,7 @@ class GaleriaController
             $imagen->saveUploadFile(Imagen::RUTA_IMAGENES_SUBIDAS);
             $imagenGaleria = new Imagen($imagen->getFileName(), $descripcion);
             $imagenesRepository->save($imagenGaleria);
-            App::get('logger')->add("Se ha guardado una imagen: ".$imagenGaleria->getNombre());
+            App::get('logger')->add("Se ha guardado una imagen: " . $imagenGaleria->getNombre());
 
             $mensaje = "Se ha guardado la imagen correctamente";
         } catch (FileException $fileException) {
@@ -65,5 +65,16 @@ class GaleriaController
             $errores[] = $appException->getMessage();
         }
         App::get('router')->redirect('galeria');
+    }
+
+    public function show($id)
+    {
+        $imagenesRepository = App::getRepository(ImagenesRepository::class);
+        $imagen = $imagenesRepository->find($id);
+        Response::renderView(
+            'imagen-show',
+            'layout',
+            compact('imagen', 'imagenesRepository')
+        );
     }
 }
