@@ -1,4 +1,5 @@
 <?php
+
     namespace dwes\core;
 
     use dwes\app\utils\MyLog;
@@ -6,6 +7,8 @@
     use dwes\core\App;
     use dwes\core\Router;
     use dwes\app\exceptions\NotFoundException;
+
+    session_start();
 
     require_once __DIR__ . '/../vendor/autoload.php';
 

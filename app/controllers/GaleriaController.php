@@ -10,6 +10,7 @@ use dwes\app\repository\ImagenesRepository;
 use dwes\app\utils\File;
 use dwes\app\exceptions\FileException;
 use dwes\app\entity\Imagen;
+use dwes\core\helpers\FlashMessage;
 
 class GaleriaController
 {
@@ -18,10 +19,14 @@ class GaleriaController
      */
     public function index()
     {
-        $errores = [];
-        $titulo = "";
-        $descripcion = "";
-        $mensaje = "";
+        $errores = FlashMessage::get('errores', []);
+        $mensaje = FlashMessage::get('mensaje');
+        $titulo = FlashMessage::get('titulo');
+        $descripcion = FlashMessage::get('descripcion');
+        $categoriaSeleccionada = FlashMessage::get('categoriaSeleccionada');
+
+        unset($_SESSION['errores']);
+        unset($_SESSION['mensaje']);
 
         try {
             // $queryBuilder = new QueryBuilder('imagenes','Imagen');
@@ -29,9 +34,9 @@ class GaleriaController
             // $imagenes = $queryBuilder->findAll();
             $imagenes = $imagenesRepository->findAll(); // $imagenGaleria = App::getRepository(ImagenGaleriaRepository::class)->findAll();
         } catch (QueryException $queryException) {
-            $errores[] = $queryException->getMessage();
+            FlashMessage::set('errores' , [$queryException->getMessage()]);
         } catch (AppException $appException) {
-            $errores[] = $appException->getMessage();
+            FlashMessage::set('errores' , [$appException->getMessage()]);
         }
 
         Response::renderView(
@@ -48,21 +53,23 @@ class GaleriaController
 
             $titulo = trim(htmlspecialchars($_POST['titulo'] ?? ""));
             $descripcion = trim(htmlspecialchars($_POST['descripcion'] ?? ""));
+            FlashMessage::set('descripcion', $descripcion);
             $tiposAceptados = ['image/jpeg', 'image/gif', 'image/png'];
             $imagen = new File('imagen', $tiposAceptados); // El nombre 'imagen' es el que se ha puesto en el formulario de galeria.view.php
 
             $imagen->saveUploadFile(Imagen::RUTA_IMAGENES_SUBIDAS);
             $imagenGaleria = new Imagen($imagen->getFileName(), $descripcion);
             $imagenesRepository->save($imagenGaleria);
-            App::get('logger')->add("Se ha guardado una imagen: " . $imagenGaleria->getNombre());
 
-            $mensaje = "Se ha guardado la imagen correctamente";
+            $mensaje = "Se ha guardado una imagen: " . $imagenGaleria->getNombre();
+            App::get('logger')->add($mensaje);
+            FlashMessage::set('mensaje', $mensaje);
         } catch (FileException $fileException) {
-            $errores[] = $fileException->getMessage();
+            FlashMessage::set('errores' , [$fileException->getMessage()]);
         } catch (QueryException $queryException) {
-            $errores[] = $queryException->getMessage();
+            FlashMessage::set('errores' , [$queryException->getMessage()]);
         } catch (AppException $appException) {
-            $errores[] = $appException->getMessage();
+            FlashMessage::set('errores' , [$appException->getMessage()]);
         }
         App::get('router')->redirect('galeria');
     }
