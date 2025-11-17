@@ -1,9 +1,12 @@
 <?php
 
 namespace dwes\app\exceptions;
-use Exception;
+use dwes\app\exceptions\AppException;
 
-class NotFoundException extends Exception
+class NotFoundException extends AppException
 {
-    
+    public function __construct(string $message = "", int $code = 404)
+    {
+        parent::__construct($message, $code);
+    }
 }

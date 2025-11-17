@@ -15,3 +15,6 @@ $router->get ('logout', 'AuthController@logout');
 
 $router->post('galeria/nueva', 'GaleriaController@nueva', 'ROLE_ADMIN');
 $router->post('asociados/nuevo', 'AsociadosController@nuevo', 'ROLE_ADMIN');
+
+$router->get ('registro', 'AuthController@registro');
+$router->post('check-registro', 'AuthController@checkRegistro');

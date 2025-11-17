@@ -3,6 +3,7 @@ use dwes\core\App;
 use dwes\core\Router;
 use dwes\core\Request;
 use dwes\app\exceptions\NotFoundException;
+use dwes\app\exceptions\AppException;
 
 try {
     require_once 'core/bootstrap.php';
@@ -16,6 +17,8 @@ try {
 
     // require $routes[Request::uri()];
     // require $router->direct(Request::uri());
+} catch ( AppException $appException ) {
+    $appException->handleError();
 } catch (NotFoundException $notFoundException) {
     die($notFoundException->getMessage());
 }
