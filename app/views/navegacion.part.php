@@ -60,6 +60,11 @@ use dwes\app\utils\Utils;
           else echo '<li class=" lien">'; ?>
           <a href="/asociados"><i class="fa fa-phone-square sr-icons"></i> Asociados</a></li>
 
+          <?php if (Utils::esOpcionMenuActiva('/exposiciones') == true)
+            echo '<li class="active lien">';
+          else echo '<li class=" lien">'; ?>
+          <a href="/exposiciones"><i class="fa fa-bookmark sr-icons"></i> Exposiciones</a></li>
+
           <?php if (Utils::esOpcionMenuActiva('/logout') == true) echo '<li class="active lien">';
           else echo '<li class=" lien">'; ?>
           <a href="/logout"><i class="fa fa-sign-out sr-icons"></i> <?= $app['user']->getUsername() ?></a></li>

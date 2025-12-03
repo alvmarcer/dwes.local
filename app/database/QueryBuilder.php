@@ -49,6 +49,21 @@ abstract class QueryBuilder
     }
 
     /**
+     * @param string $tabla
+     * @param string $classEntity
+     * @return array
+     */
+    public function findByUsuario(int $idUsuario): array
+    {
+        $sql = "SELECT * FROM $this->table WHERE idUsuario = $idUsuario";
+        $pdoStatement = $this->connection->prepare($sql);
+        if ($pdoStatement->execute() === false)
+            throw new QueryException("No se ha podido ejecutar la query solicitada.");
+
+        return $pdoStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, $this->classEntity);
+    }
+
+    /**
      * @param int $id
      * @return IEntity
      * @throws NotFoundException

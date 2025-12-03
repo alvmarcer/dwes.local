@@ -32,7 +32,7 @@ class GaleriaController
             // $queryBuilder = new QueryBuilder('imagenes','Imagen');
             $imagenesRepository = App::getRepository(ImagenesRepository::class);
             // $imagenes = $queryBuilder->findAll();
-            $imagenes = $imagenesRepository->findAll(); // $imagenGaleria = App::getRepository(ImagenGaleriaRepository::class)->findAll();
+            $imagenes = $imagenesRepository->findByUsuario($_SESSION['loguedUser']); // $imagenGaleria = App::getRepository(ImagenGaleriaRepository::class)->findAll();
         } catch (QueryException $queryException) {
             FlashMessage::set('errores' , [$queryException->getMessage()]);
         } catch (AppException $appException) {
@@ -53,12 +53,13 @@ class GaleriaController
 
             $titulo = trim(htmlspecialchars($_POST['titulo'] ?? ""));
             $descripcion = trim(htmlspecialchars($_POST['descripcion'] ?? ""));
+            $idUsuario = $_SESSION['loguedUser'];
             FlashMessage::set('descripcion', $descripcion);
             $tiposAceptados = ['image/jpeg', 'image/gif', 'image/png'];
             $imagen = new File('imagen', $tiposAceptados); // El nombre 'imagen' es el que se ha puesto en el formulario de galeria.view.php
 
             $imagen->saveUploadFile(Imagen::RUTA_IMAGENES_SUBIDAS);
-            $imagenGaleria = new Imagen($imagen->getFileName(), $descripcion);
+            $imagenGaleria = new Imagen($imagen->getFileName(), $descripcion, 0, 0, 0, 0, $idUsuario);
             $imagenesRepository->save($imagenGaleria);
 
             $mensaje = "Se ha guardado una imagen: " . $imagenGaleria->getNombre();

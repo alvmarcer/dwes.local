@@ -13,7 +13,7 @@ $router->get ('login', 'AuthController@login');
 $router->post('check-login', 'AuthController@checkLogin');
 $router->get ('logout', 'AuthController@logout');
 
-$router->post('galeria/nueva', 'GaleriaController@nueva', 'ROLE_ADMIN');
+$router->post('galeria/nueva', 'GaleriaController@nueva', 'ROLE_USER');
 $router->post('asociados/nuevo', 'AsociadosController@nuevo', 'ROLE_ADMIN');
 
 $router->get ('registro', 'AuthController@registro');

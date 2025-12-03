@@ -47,14 +47,20 @@ class Imagen implements IEntity
     private $numDownloads;
 
     /**
+     * @var int
+     */
+    private $idUsuario;
+
+    /**
      * @param string $nombre
      * @param string $descripcion
      * @param int $categoria
      * @param int $numVisualizaciones
      * @param int $numLikes
      * @param int $numDownloads
+     * @param int $idUsuario
      */
-    public function __construct(string $nombre = "", string $descripcion = "", int $categoria = 0, int $numVisualizaciones = 0, int $numLikes = 0, int $numDownloads = 0)
+    public function __construct(string $nombre = "", string $descripcion = "", int $categoria = 0, int $numVisualizaciones = 0, int $numLikes = 0, int $numDownloads = 0, int $idUsuario = 0)
     {
         $this->id = null;
         $this->nombre = $nombre;
@@ -63,6 +69,7 @@ class Imagen implements IEntity
         $this->numVisualizaciones = $numVisualizaciones;
         $this->numLikes = $numLikes;
         $this->numDownloads = $numDownloads;
+        $this->idUsuario = $idUsuario;
     }
 
     /**
@@ -122,6 +129,14 @@ class Imagen implements IEntity
     }
 
     /**
+     * @return int
+     */
+    public function getIdUsuario(): ?int
+    {
+        return $this->idUsuario;
+    }
+
+    /**
      * @param string $nombre
      * @return Imagen
      */
@@ -172,6 +187,16 @@ class Imagen implements IEntity
     }
 
     /**
+     * @param int $idUsuario
+     * @return Imagen
+     */
+    public function setIdUsuario(int $idUsuario): Imagen
+    {
+        $this->idUsuario = $idUsuario;
+        return $this;
+    }
+
+    /**
      * @param int $numDownloads
      * @return Imagen
      */
@@ -215,6 +240,7 @@ class Imagen implements IEntity
             'numVisualizaciones' => $this->getNumVisualizaciones(),
             'numLikes' => $this->getNumLikes(),
             'numDownloads' => $this->getNumDownloads(),
+            'idUsuario' => $this->getIdUsuario(),
             'categoria' => $this->getCategoria()
         ];
     }
