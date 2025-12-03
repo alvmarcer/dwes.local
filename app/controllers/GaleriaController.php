@@ -2,6 +2,7 @@
 
 namespace dwes\app\controllers;
 
+use BcMath\Number;
 use dwes\core\Response;
 use dwes\app\exceptions\QueryException;
 use dwes\core\App;
@@ -84,5 +85,51 @@ class GaleriaController
             'layout',
             compact('imagen', 'imagenesRepository')
         );
+    }
+
+    public function change($id)
+    {
+        $imagenesRepository = App::getRepository(ImagenesRepository::class);
+        $imagen = $imagenesRepository->find($id);
+        Response::renderView(
+            'imagen-change',
+            'layout',
+            compact('imagen', 'imagenesRepository')
+        );
+    }
+
+    public function modificar($id)
+    {
+        try {
+            $imagenesRepository = App::getRepository(ImagenesRepository::class);
+
+            $descripcion = trim(htmlspecialchars($_POST['descripcion'] ?? ""));
+            FlashMessage::set('descripcion', $descripcion);
+
+            $tiposAceptados = ['image/jpeg', 'image/gif', 'image/png'];
+            $imagen = new File('imagen', $tiposAceptados); // El nombre 'imagen' es el que se ha puesto en el formulario de galeria.view.php
+            
+            if(is_uploaded_file($_FILES['imagen']['tmp_name'])) {
+                $imagen->saveUploadFile(Imagen::RUTA_IMAGENES_SUBIDAS);
+                $imagenesRepository->update($imagen->getFileName(), $descripcion, (int)$id);
+            } else {
+                $titulo = trim(htmlspecialchars($_POST['titulo'] ?? ""));
+                $imagenesRepository->update($titulo, $descripcion, (int)$id);
+            }
+        } catch (FileException $fileException) {
+            FlashMessage::set('errores' , [$fileException->getMessage()]);
+        } catch (QueryException $queryException) {
+            FlashMessage::set('errores' , [$queryException->getMessage()]);
+        } catch (AppException $appException) {
+            FlashMessage::set('errores' , [$appException->getMessage()]);
+        }
+        App::get('router')->redirect('galeria');
+    }
+
+    public function eliminar($id)
+    {
+        $imagenesRepository = App::getRepository(ImagenesRepository::class);
+        $imagenesRepository->delete($id);
+        App::get('router')->redirect('galeria');
     }
 }

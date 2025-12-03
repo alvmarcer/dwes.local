@@ -5,6 +5,7 @@ $router->get ('about', 'PagesController@about');
 $router->get ('blog', 'PagesController@blog');
 $router->get ('contact', 'PagesController@contact');
 $router->get ('galeria/:id', 'GaleriaController@show', 'ROLE_USER');
+$router->get ('galeria/modificar/:id', 'GaleriaController@change', 'ROLE_USER');
 $router->get ('galeria', 'GaleriaController@index', 'ROLE_USER');
 $router->get ('post', 'PagesController@post');
 $router->get ('asociados', 'AsociadosController@index');
@@ -14,6 +15,8 @@ $router->post('check-login', 'AuthController@checkLogin');
 $router->get ('logout', 'AuthController@logout');
 
 $router->post('galeria/nueva', 'GaleriaController@nueva', 'ROLE_USER');
+$router->post('galeria/modificar/:id', 'GaleriaController@modificar', 'ROLE_USER');
+$router->post('galeria/eliminar/:id', 'GaleriaController@eliminar', 'ROLE_USER');
 $router->post('asociados/nuevo', 'AsociadosController@nuevo', 'ROLE_ADMIN');
 
 $router->get ('registro', 'AuthController@registro');

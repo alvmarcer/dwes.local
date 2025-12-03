@@ -63,6 +63,26 @@ abstract class QueryBuilder
         return $pdoStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, $this->classEntity);
     }
 
+    public function update(string $nombre, string $descripcion, int $id)
+    {
+        $sql = "UPDATE $this->table SET nombre = '$nombre', descripcion = '$descripcion' WHERE id = $id";
+        $pdoStatement = $this->connection->prepare($sql);
+        if ($pdoStatement->execute() === false)
+            throw new QueryException("No se ha podido ejecutar la query solicitada.");
+
+        return $pdoStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, $this->classEntity);
+    }
+
+    public function delete(int $id)
+    {
+        $sql = "DELETE FROM $this->table WHERE id = $id";
+        $pdoStatement = $this->connection->prepare($sql);
+        if ($pdoStatement->execute() === false)
+            throw new QueryException("No se ha podido ejecutar la query solicitada.");
+
+        return $pdoStatement->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, $this->classEntity);
+    }
+
     /**
      * @param int $id
      * @return IEntity

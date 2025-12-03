@@ -53,7 +53,7 @@
                 <tbody>
                     <?php foreach ($imagenes as $imagen) : ?>
                         <tr>
-                            <th scope="row"><?= $imagen->getNombre() ?></th>
+                            <th scope="row"><a href='/galeria/<?= $imagen->getId() ?>' > <?= $imagen->getNombre()?></a></th>
                             <td>
                                 <img src="<?= $imagen->getUrlSubidas() ?>"
                                     alt="<?= $imagen->getDescripcion() ?>"
@@ -63,6 +63,13 @@
                             <td><?= $imagen->getNumVisualizaciones() ?></td>
                             <td><?= $imagen->getNumLikes() ?></td>
                             <td><?= $imagen->getNumDownloads() ?></td>
+                            <td>
+                                <a href="<?= '/galeria/modificar/' . $imagen->getId() ?>" class="btn btn-primary pull-right sr-button">Modificar</a>
+
+                                <form action="/galeria/eliminar/<?= $imagen->getId() ?>" method="POST">
+                                  <button type="submit" class="btn btn-primary pull-right sr-button">Eliminar</button>
+                                </form>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
