@@ -137,6 +137,14 @@ abstract class QueryBuilder
         }
     }
 
+    public function activar($id)
+    {
+        $sql = "SELECT activa FROM $this->table WHERE id = $id";
+        $activa = $this->executeRaw($sql)[0]['activa'] == 0 ? 1 : 0;
+        $sql = "UPDATE $this->table SET activa = " . $activa . " WHERE id = $id";
+        return $this->executeQuery($sql);
+    }
+
     public function findBy(array $filters): array
     {
         $sql = "SELECT * FROM $this->table " . $this->getFilters($filters);
@@ -158,5 +166,30 @@ abstract class QueryBuilder
         if (count($result) > 0)
             return $result[0];
         return null;
+    }
+
+    private function executeRaw(string $sql, array $parameters = []): array
+    {
+        $pdoStatement = $this->connection->prepare($sql);
+
+        if ($pdoStatement->execute($parameters) === false)
+            throw new QueryException("No se ha podido ejecutar la query solicitada.");
+
+        return $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    public function findAllUsers($exposiciones)
+    {
+        $usuarios = [];
+
+        foreach ($exposiciones as $exp)
+        {
+            $sql = "SELECT username FROM usuario WHERE id = " . $exp->getIdUsuario();
+            $result = $this->executeRaw($sql);  
+            $usuarios[] = $result[0]["username"];
+        }
+
+        return $usuarios;
     }
 }

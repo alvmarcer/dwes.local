@@ -11,7 +11,14 @@ class ExposicionesController
 {
     public function index()
     {
-        // crear...
+        $exposicionesRepository = App::getRepository(ExposicionRepository::class);
+        $exposiciones = $exposicionesRepository->findAll();
+        $usuarios = $exposicionesRepository->findAllUsers($exposiciones);
+        Response::renderView(
+            'exposiciones',
+            'layout',
+            compact('exposiciones', 'exposicionesRepository', 'usuarios')
+        );
     }
 
     public function crear()
@@ -33,6 +40,15 @@ class ExposicionesController
 
         $nuevaExposicion = new Exposicion($nombre, $descripcion, $fechaInicio, $fechaFin, true, $_SESSION['loguedUser']);
         $exposicionesRepository->save($nuevaExposicion);
+        App::get('router')->redirect('exposiciones');
+    }
+
+    public function activar($id)
+    {
+        $exposicionesRepository = App::getRepository(ExposicionRepository::class);
+
+        $exposicionesRepository->activar($id);
+
         App::get('router')->redirect('exposiciones');
     }
 }
