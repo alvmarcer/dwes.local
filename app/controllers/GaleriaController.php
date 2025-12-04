@@ -2,7 +2,6 @@
 
 namespace dwes\app\controllers;
 
-use BcMath\Number;
 use dwes\core\Response;
 use dwes\app\exceptions\QueryException;
 use dwes\core\App;

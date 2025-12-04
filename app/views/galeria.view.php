@@ -3,6 +3,22 @@
         <div class="row align-items-center">
             <div class="col-lg-6 mx-auto text-center">
                 <div class="intro-wrap">
+                    <h2 class="mb-0">Exposiciones</h2>
+                    <p class="text-white">Crea exposiciones para tus imágenes y deja que cualquier usauario añada las suyas</p>
+                    <a href="/exposiciones/crear" class="btn btn-primary sr-button">Crear</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<div class="hero hero-inner">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mx-auto text-center">
+                <div class="intro-wrap">
                     <h1 class="mb-0">Galería</h1>
                     <p class="text-white">Nuestros viajeros comparten aquí sus mejores experiencias. </p>
                 </div>
@@ -64,7 +80,7 @@
                             <td><?= $imagen->getNumLikes() ?></td>
                             <td><?= $imagen->getNumDownloads() ?></td>
                             <td>
-                                <a href="<?= '/galeria/modificar/' . $imagen->getId() ?>" class="btn btn-primary pull-right sr-button">Modificar</a>
+                                <a href="/galeria/modificar/<?= $imagen->getId() ?>" class="btn btn-primary pull-right sr-button">Modificar</a>
 
                                 <form action="/galeria/eliminar/<?= $imagen->getId() ?>" method="POST">
                                   <button type="submit" class="btn btn-primary pull-right sr-button">Eliminar</button>
