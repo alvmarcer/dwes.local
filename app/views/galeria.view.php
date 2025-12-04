@@ -85,6 +85,8 @@
                                 <form action="/galeria/eliminar/<?= $imagen->getId() ?>" method="POST">
                                   <button type="submit" class="btn btn-primary pull-right sr-button">Eliminar</button>
                                 </form>
+
+                                <a href="/exposiciones/anadirImagen/<?= $imagen->getId() ?>" class="btn btn-primary pull-right sr-button">Añadir a exposición</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

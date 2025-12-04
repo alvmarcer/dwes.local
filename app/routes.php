@@ -11,10 +11,13 @@ $router->get ('post', 'PagesController@post');
 $router->get ('asociados', 'AsociadosController@index');
 $router->get ('exposiciones', 'ExposicionesController@index', 'ROLE_USER');
 $router->get ('exposiciones/crear', 'ExposicionesController@crear', 'ROLE_USER');
+$router->get ('exposiciones/anadirImagen/:id', 'ExposicionesController@anadirImagen', 'ROLE_USER');
 
 $router->get ('login', 'AuthController@login');
 $router->post('check-login', 'AuthController@checkLogin');
 $router->get ('logout', 'AuthController@logout');
+
+$router->post('exposiciones/postImagen', 'ImagenesExposicionesController@postImagen', 'ROLE_USER');
 
 $router->post('galeria/nueva', 'GaleriaController@nueva', 'ROLE_USER');
 $router->post('galeria/modificar/:id', 'GaleriaController@modificar', 'ROLE_USER');

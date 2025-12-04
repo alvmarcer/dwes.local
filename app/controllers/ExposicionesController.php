@@ -3,6 +3,7 @@
 namespace dwes\app\controllers;
 
 use dwes\app\entity\Exposicion;
+use dwes\app\entity\Imagenes_Exposiciones;
 use dwes\app\repository\ExposicionRepository;
 use dwes\core\Response;
 use dwes\core\App;
@@ -50,5 +51,24 @@ class ExposicionesController
         $exposicionesRepository->activar($id);
 
         App::get('router')->redirect('exposiciones');
+    }
+
+    public function anadirImagen($id)
+    {
+        $exposicionesRepository = App::getRepository(ExposicionRepository::class);
+        $exposicionesBrutas = $exposicionesRepository->findAll();
+        
+        $idExposiciones = [];
+        $nombreExposiciones = [];
+        foreach ($exposicionesBrutas as $exposicion) {
+            $idExposiciones[] = $exposicion->getId();
+            $nombreExposiciones[] = $exposicion->getNombre();
+        }
+
+        Response::renderView(
+            'anadirImagen',
+            'layout',
+            compact('idExposiciones', 'nombreExposiciones', 'id')
+        );
     }
 }
