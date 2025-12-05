@@ -10,8 +10,8 @@ $router->get ('galeria', 'GaleriaController@index', 'ROLE_USER');
 $router->get ('post', 'PagesController@post');
 $router->get ('asociados', 'AsociadosController@index');
 $router->get ('exposiciones', 'ExposicionesController@index', 'ROLE_USER');
-$router->get ('exposiciones/:id', 'ExposicionesController@mostrar', 'ROLE_USER');
 $router->get ('exposiciones/crear', 'ExposicionesController@crear', 'ROLE_USER');
+$router->get ('exposiciones/:id', 'ExposicionesController@mostrar', 'ROLE_USER');
 $router->get ('exposiciones/anadirImagen/:id', 'ExposicionesController@anadirImagen', 'ROLE_USER');
 
 $router->get ('login', 'AuthController@login');
